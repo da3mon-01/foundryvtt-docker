@@ -8,9 +8,10 @@ services:
     init: true
     environment:
       FOUNDRY_ADMIN_PASSWORD_FILE: /run/secrets/admin_password
+      FOUNDRY_OPTIONS_FILE: /run/secrets/options_file
     secrets:
       - admin_password
-      - config_file
+      - options_file
     ports:
       - 127.0.0.1:30000:30000
     volumes:
@@ -27,3 +28,5 @@ networks:
 secrets:
   admin_password:
     file: ./.secrets/admin_password
+  options_file:
+    file: ./.secrets/options.json

@@ -14,9 +14,10 @@ ENV FOUNDRY_USER_HOME=/home/foundry
 ENV FOUNDRY_HOME=${FOUNDRY_USER_HOME}/fvtt
 ENV FOUNDRY_DATA=${FOUNDRY_USER_HOME}/fvttdata
 ENV NODE_ENV=production
+ENV FOUNDRY_PORT=30000
 # controls how cp command should copy over existing config
-# check cp manual how to use
-ENV FOUNDRY_CONFIG_CP_OPTION="-f"
+# check cp manual how this should behave
+ENV CP_COMMAND_ARG="-vf"
 
 # Set the foundry install home
 RUN userdel -r node &&\
@@ -32,7 +33,7 @@ COPY --from=build  --chown=foundry:foundry /opt/foundry ${FOUNDRY_HOME}/
 COPY --chown=foundry:foundry docker-entrypoint.sh .
 
 VOLUME [ "${FOUNDRY_DATA}" ]
-EXPOSE 30000
+EXPOSE ${FOUNDRY_PORT}
 
 # not using envvar as 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
