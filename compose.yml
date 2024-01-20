@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  foundryvttdocker:
+    image: foundryvttdocker
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    init: true
+    environment:
+      FOUNDRY_ADMIN_PASSWORD_FILE: /run/secrets/admin_password
+    secrets:
+      - admin_password
+      - config_file
+    ports:
+      - 127.0.0.1:30000:30000
+    volumes:
+      - vttdata:/home/foundry/fvttdata
+    networks:
+      - foundryvttnet
+
+volumes:
+  vttdata:
+
+networks:
+  foundryvttnet:
+
+secrets:
+  admin_password:
+    file: ./.secrets/admin_password
