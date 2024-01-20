@@ -3,7 +3,8 @@
 
 set -e
 
-export OPTIONS_FILE="${FOUNDRY_DATA}/Config/options.json"
+export CONFIG_DIR="${FOUNDRY_DATA}/Config"
+export OPTIONS_FILE="${CONFIG_DIR}/options.json"
 
 if [[ -n "$1" ]]; then 
     exec "$@";
@@ -14,6 +15,12 @@ else
     fi
 
     if [[ -f "$FOUNDRY_OPTIONS_FILE" ]];then
+
+        if [[ ! -d "${CONFIG_DIR}" ]];then
+          echo "${CONFIG_DIR} does not exist, creating...";
+          mkdir -p ${CONFIG_DIR};
+        fi
+
         echo "Found options file in secrets, copying to datadir";
         cp $CP_COMMAND_ARG $FOUNDRY_OPTIONS_FILE $OPTIONS_FILE;
     fi
