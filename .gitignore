@@ -131,3 +131,5 @@ dist
 
 # binaries
 *.zip
+.foundryvtt
+.secrets
