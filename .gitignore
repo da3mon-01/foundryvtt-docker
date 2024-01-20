@@ -133,3 +133,6 @@ dist
 *.zip
 .foundryvtt
 .secrets
+
+# compose override
+compose-override.yml
