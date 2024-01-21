@@ -3,7 +3,7 @@ FROM debian:bookworm as build
 COPY FoundryVTT.zip .
 RUN apt update &&\
     apt install -y unzip &&\
-    unzip FoundryVTY.zip -d /opt/foundry
+    unzip FoundryVTT.zip -d /opt/foundry
 
 ##############################################
 FROM node:20-bookworm-slim as worker
