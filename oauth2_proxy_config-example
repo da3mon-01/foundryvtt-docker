@@ -1,0 +1,17 @@
+http_address="0.0.0.0:4180"
+cookie_secret="something="
+provider="google"
+client_secret="secret"
+client_id="id"
+cookie_secure="true"
+
+redirect_url="https://example.com/oauth2/callback"
+cookie_domains=["example.com"] # Required so cookie can be read on all subdomains.
+whitelist_domains=["example.com"] # Required to allow redirection back to original requested target.
+# Enables the use of `X-Forwarded-*` headers to determine request correctly
+reverse_proxy="true"
+authenticated_emails_file="/run/secrets/emails"
+
+# to connect to vtt
+upstreams="http://foundryvttdocker:30000"
+proxy_websockets="true"
